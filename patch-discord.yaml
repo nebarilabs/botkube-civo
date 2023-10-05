@@ -9,9 +9,9 @@ spec:
     communications:
       default-group:
         discord:
-          botID: "983030360294174760"
+          botID: "" #bot id goes in here
           channels:
             default:
-              id: "962123383942828084"
+              id: "" #bot channel id gets set here
           enabled: true
-          token: OTgzMDMwMzYwMjk0MTc0NzYw.GAnsji.m4ZJfroMaSHFh9AG_0kd7T3UWGb6SdxZhxurEs
+          token:  # token goes here
