@@ -1,0 +1,17 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: botkube-civo-demo
+  namespace: flux-system
+spec:
+  values:
+    communications:
+      default-group:
+        discord:
+          botID: "" #bot id goes in here
+          channels:
+            default:
+              id: "" #bot channel id gets set here
+          enabled: true
+          token:  # token goes here

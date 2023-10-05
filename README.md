@@ -39,12 +39,12 @@ flux create source helm botkube --url=https://charts.botkube.io --interval=720m 
 
 4. Create a helmrelease with flux cli
 ```c
-flux create hr botkube-civo --source=HelmRepository/botkube --chart=botkube --values=./values.yaml --target-namespace=botkube-civo-demo --export > helmrelease-botkube.yaml
+flux create hr botkube-civo-demo --source=HelmRepository/botkube --chart=botkube --values=./values.yaml --target-namespace=botkube-civo-demo --export > helmrelease-botkube.yaml
 ``` 
 
 5. Create a kustomize to apply the resources
 ```c
-kustomize create --autodetect --labels botkube-civo:demo,dev:nebarilabs
+kustomize create --autodetect --labels botkube-civo:demo,dev:nebarilabs --namespace botkube-civo-demo
 ```
 
 6. You can validate what kustomize will build of all the resources and patches even via kustomize build function
