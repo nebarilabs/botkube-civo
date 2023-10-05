@@ -36,37 +36,42 @@ What we will essentially do is use local helm cli to get the values needed for t
  helm repo add infracloudio https://charts.botkube.io
 ```
 
-2. Pull down the chart values to be used to make the helmRelease soon
+2. Update your local computer's helm repo cache so that we'll be able to pull down the charts local **values.yaml** as input for the next step
+```c
+helm repo update
+```
+
+3. Pull down the chart values to be used to make the helmRelease soon
 ```c
 helm show values infracloudio/botkube > values.yaml
 ```
 
-3. Create a helm repository source to pull the chart from
+4. Create a helm repository source to pull the chart from
 ```c
 flux create source helm botkube --url=https://charts.botkube.io --interval=720m --export > helmrepo-botkube.yaml
 ```
 
-4. Create a helmrelease with flux cli
+5. Create a helmrelease with flux cli
 ```c
 flux create hr botkube-civo-demo --source=HelmRepository/botkube --chart=botkube --values=./values.yaml --target-namespace=botkube-civo-demo --export > helmrelease-botkube.yaml
 ``` 
 
-5. Create the namespace up front
+6. Create the namespace up front
 ```c
 kubectl create ns botkube-civo-demo --dry-run=client -o yaml > namespace-botkube-civo-demo.yaml
 ```
 
-6. Create a kustomize to apply the resources
+7. Create a kustomize to apply the resources
 ```c
 kustomize create --autodetect --labels botkube-civo:demo,dev:nebarilabs --namespace botkube-civo-demo
 ```
 
-7. You can validate what kustomize will build of all the resources and patches even via kustomize build function
+8. You can validate what kustomize will build of all the resources and patches even via kustomize build function
 ```c
 kustomize build . | less
 ```
 
-8. From here if you want to make a patch for kustomize you can copy the helmrelease as a patch line and add it to the kustomize
+9. From here if you want to make a patch for kustomize you can copy the helmrelease as a patch line and add it to the kustomize
 ```c
 cp helmrelease-botkube.yaml patch-clustername.yaml
 ```
@@ -84,23 +89,23 @@ spec:
       clusterName: botkube-civo-demo
 
 ```
-9. Append to kustomization a patch for any patch resources like clustername or tokens even, again you can use **kustomize build .** to validate what kustomize will do with the resources and patches
+10. Append to kustomization a patch for any patch resources like clustername or tokens even, again you can use **kustomize build .** to validate what kustomize will do with the resources and patches
 ```yaml
 patchesStrategicMerge:
 - patch-clustername.yaml
 ```
 
-10. Create a cluster in civo cloud to deploy to in this example its called **test04**
+11. Create a cluster in civo cloud to deploy to in this example its called **test04**
 ```c
 date && time civo k8s create test04 --region NYC1 --save --merge --nodes 1 --size g4s.kube.small --cluster-type k3s --switch --wait -a Traefik-v2-loadbalancer -a civo-cluster-autoscaler --version 1.27.1-k3s1
 ```
 
-11. Flux bootstrap the cluster to your repo of choice with the helm-controller
+12. Flux bootstrap the cluster to your repo of choice with the helm-controller
 ```c
 flux bootstrap github   --owner=$GITHUB_USER   --repository=someCoolRepository   --branch=main   --path=datacenters/civo/clusters/test04   --personal --verbose --components=kustomize-controller,source-controller,notification-controller,helm-controller --interval=1m
 ```
 
-12. With our new cluster available with flux we pass our manifests we've made to the cluster's helm-controller
+13. With our new cluster available with flux we pass our manifests we've made to the cluster's helm-controller
 ```c
 kubectl apply -k .
 ```
