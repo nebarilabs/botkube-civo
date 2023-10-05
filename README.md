@@ -1,26 +1,32 @@
-# botkube-civo
+# Botkube-Civo-Demo
 Demonstrate Botkube ChatOps via GitOps
 
-## Pre-Requisite Binaries
-You will need the following 3 binaries, even via curl if you're feeling brave and trusting
+## Prerequisites
+You will need the following 5 binaries, even via curl if you're feeling brave and trusting, its assumed you have kubectl & civo cli's already.
 - helm
 - flux
 - kustomize
+- civo
+- kubectl
 ```c
 #helm
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 #flux
-curl -s https://fluxcd.io/install.sh | sudo bash
+curl -s https://fluxcd.io/install.sh | bash
 #kustomize
 curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+#civo
+curl -sL https://civo.com/get | sh
+#kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 ```
 ---
 # Installation
 
 ## Summary
-What we will essentially do is use local helm cli to get the values needed for the chart. Flux will also be setup to say where is the chart to pull from when in cluster and how to define the helmRelease to be reconciled via helm-controller in cluster. Kustomize is used to help validate any changes you would like to make before applying. We will then make a patch by copying the base helmRelease to a patch file that will replace items of interest like a cluster-name or even api tokens. We will then quickly create a cluster in our favorite k8s cloud provider civo and hand our manifest to the helm-controller and watch the GitOps ensure adn reconcile our desired state of a helmRelease.
+What we will essentially do is use local helm cli to get the values needed for the chart. Flux will also be setup to say where is the chart to pull from when in cluster and how to define the helmRelease to be reconciled via helm-controller in cluster. Kustomize is used to help validate any changes you would like to make before applying. We will then make a patch by copying the base helmRelease to a patch file that will replace items of interest like a cluster-name or even api tokens. We will then quickly create a cluster in our favorite k8s cloud provider civo and hand our manifest to the helm-controller and watch the GitOps reconcile our desired state.
 
-### Overview
+### Architecture Overview
 ![high level overview](https://github.com/nebarilabs/botkube-civo-demo/blob/main/civo-flux-helmController-botkube-discord.png?raw=true)
 
 ---
@@ -107,6 +113,6 @@ kubectl apply -k .
 - [CNCF Slack](https://communityinviter.com/apps/cloud-native/cncf)
 
 ## Contacts
-- Find me Shawn Garrett on civo community slack and cncf slack
+- Find me Shawn Garrett on the Civo community slack and cncf slack
 - [Contact Shawn at Nebari Labs](mailto:shawn@nebarilabs.com)
 - [Civo Ambassadors](https://www.civo.com/ambassadors)
