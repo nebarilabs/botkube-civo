@@ -1,7 +1,7 @@
 # botkube-civo
 Demonstrate Botkube ChatOps via GitOps
 
-##Pre-Requisite Binaries
+## Pre-Requisite Binaries
 You will need the following 3 binaries, even via curl if you're feeling brave and trusting
 -helm
 -flux
@@ -15,13 +15,13 @@ curl -s https://fluxcd.io/install.sh | sudo bash
 curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 ```
 ---
-#Installation
+# Installation
 
 ##Summary
 What we will essentially do is use local helm cli to get the values needed for the chart. Flux will also be setup to say where is the chart to pull from when in cluster and how to define the helmRelease to be reconciled via helm-controller in cluster. Kustomize is used to help validate any changes you would like to make before applying. We will then make a patch by copying the base helmRelease to a patch file that will replace items of interest like a cluster-name or even api tokens
 
 ---
-##Creating all the things
+## Creating all the things
 1. You can use helm to access the repo for the chart
 ```c
  helm repo add infracloudio https://charts.botkube.io
@@ -77,11 +77,11 @@ patchesStrategicMerge:
 ```
 
 ---
-#References
+# References
 -[Artifacthub.io Botkube](https://artifacthub.io/packages/helm/infracloudio/botkube)
 -[Civo Community Slack](https://civo-community.slack.com/archives/CMVCKMCN5)
 -[CNCF Slack](https://communityinviter.com/apps/cloud-native/cncf)
 
-##Contacts
+## Contacts
 -Find me Shawn Garrett on civo community slack and cncf slack
 -[Contact Shawn at Nebari Labs](mailto:shawn@nebarilabs.com)
