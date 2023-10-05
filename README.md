@@ -3,9 +3,9 @@ Demonstrate Botkube ChatOps via GitOps
 
 ## Pre-Requisite Binaries
 You will need the following 3 binaries, even via curl if you're feeling brave and trusting
--helm
--flux
--kustomize
+- helm
+- flux
+- kustomize
 ```c
 #helm
 curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
@@ -78,10 +78,10 @@ patchesStrategicMerge:
 
 ---
 # References
--[Artifacthub.io Botkube](https://artifacthub.io/packages/helm/infracloudio/botkube)
--[Civo Community Slack](https://civo-community.slack.com/archives/CMVCKMCN5)
--[CNCF Slack](https://communityinviter.com/apps/cloud-native/cncf)
+- [Artifacthub.io Botkube](https://artifacthub.io/packages/helm/infracloudio/botkube)
+- [Civo Community Slack](https://civo-community.slack.com/archives/CMVCKMCN5)
+- [CNCF Slack](https://communityinviter.com/apps/cloud-native/cncf)
 
 ## Contacts
--Find me Shawn Garrett on civo community slack and cncf slack
--[Contact Shawn at Nebari Labs](mailto:shawn@nebarilabs.com)
+- Find me Shawn Garrett on civo community slack and cncf slack
+- [Contact Shawn at Nebari Labs](mailto:shawn@nebarilabs.com)
