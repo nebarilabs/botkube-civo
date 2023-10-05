@@ -84,4 +84,4 @@ patchesStrategicMerge:
 
 ##Contacts
 -Find me Shawn Garrett on civo community slack and cncf slack
--shawn@nebarilabs.com
+-[Contact Shawn at Nebari Labs](mailto:shawn@nebarilabs.com)
