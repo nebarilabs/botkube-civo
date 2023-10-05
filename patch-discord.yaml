@@ -6,14 +6,12 @@ metadata:
   namespace: flux-system
 spec:
   values:
-    analytics:
-      disable: false
     communications:
       default-group:
         discord:
-          botID: "983030360294174760"
+          botID: "" #bot id goes in here
           channels:
             default:
-              id: "962123383942828084"
+              id: "" #bot channel id gets set here
           enabled: true
-          token: OTgzMDMwMzYwMjk0MTc0NzYw.GCcTCx.qkKzWOu11QnDk-HPBtnGRuud09059VWbK7ueqg
+          token:  # token goes here
