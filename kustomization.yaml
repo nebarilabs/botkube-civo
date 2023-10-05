@@ -5,6 +5,7 @@ metadata:
 resources:
 - helmrelease-botkube.yaml
 - helmrepo-botkube.yaml
+- namespace-botkube-civo-demo.yaml
 commonLabels:
   botkube-civo: demo
   dev: nebarilabs

@@ -42,17 +42,21 @@ flux create source helm botkube --url=https://charts.botkube.io --interval=720m 
 flux create hr botkube-civo-demo --source=HelmRepository/botkube --chart=botkube --values=./values.yaml --target-namespace=botkube-civo-demo --export > helmrelease-botkube.yaml
 ``` 
 
-5. Create a kustomize to apply the resources
+5. Create the namespace up front
+```c
+kubectl create ns botkube-civo-demo --dry-run=client -o yaml > namespace-botkube-civo-demo.yaml
+
+6. Create a kustomize to apply the resources
 ```c
 kustomize create --autodetect --labels botkube-civo:demo,dev:nebarilabs --namespace botkube-civo-demo
 ```
 
-6. You can validate what kustomize will build of all the resources and patches even via kustomize build function
+7. You can validate what kustomize will build of all the resources and patches even via kustomize build function
 ```c
 kustomize build . | less
 ```
 
-7. From here if you want to make a patch for kustomize you can copy the helmrelease as a patch line and add it to the kustomize
+8. From here if you want to make a patch for kustomize you can copy the helmrelease as a patch line and add it to the kustomize
 ```c
 cp helmrelease-botkube.yaml patch-clustername.yaml
 ```
@@ -70,7 +74,7 @@ spec:
       clusterName: botkube-civo-demo
 
 ```
-8. Append to kustomization a patch for any patch resources like clustername or tokens even, again you can use **kustomize build .** to validate what kustomize will do with the resources and patches
+9. Append to kustomization a patch for any patch resources like clustername or tokens even, again you can use **kustomize build .** to validate what kustomize will do with the resources and patches
 ```yaml
 patchesStrategicMerge:
 - patch-clustername.yaml
@@ -79,6 +83,7 @@ patchesStrategicMerge:
 ---
 # References
 - [Artifacthub.io Botkube](https://artifacthub.io/packages/helm/infracloudio/botkube)
+- [Botkube Discord Instructions](https://docs.botkube.io/installation/discord/self-hosted)
 - [Civo Community Slack](https://civo-community.slack.com/archives/CMVCKMCN5)
 - [CNCF Slack](https://communityinviter.com/apps/cloud-native/cncf)
 
