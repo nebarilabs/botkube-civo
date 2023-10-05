@@ -24,7 +24,7 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 # Installation
 
 ## Summary
-What we will essentially do is use local helm cli to get the values needed for the chart. Flux will also be setup to say where is the chart to pull from when in cluster and how to define the helmRelease to be reconciled via helm-controller in cluster. Kustomize is used to help validate any changes you would like to make before applying. We will then make a patch by copying the base helmRelease to a patch file that will replace items of interest like a cluster-name or even api tokens. We will then quickly create a cluster in our favorite k8s cloud provider civo and hand our manifest to the helm-controller and watch the GitOps reconcile our desired state.
+What we will essentially do is use local [helm](https://helm.sh/) cli to get the values needed for the chart. [Flux](https://fluxcd.io/) will also be setup to say where is the chart to pull from when in cluster and how to define the helmRelease to be reconciled via [helm-controller](https://fluxcd.io/flux/components/helm/) in cluster. [Kustomize](https://kustomize.io/) is used to help validate any changes you would like to make before applying. We will then make a patch by copying the base helmRelease to a patch file that will replace items of interest like a cluster-name, available executors, api tokens, etc.. We then quickly create a cluster in our favorite kubernetes cloud provider [Civo](https://civo.com/) and give it our manifest to watch the GitOps reconcile our desired state and manage the helm release for us.
 
 ### Architecture Overview
 ![high level overview](https://github.com/nebarilabs/botkube-civo-demo/blob/main/civo-flux-helmController-botkube-discord.png?raw=true)
