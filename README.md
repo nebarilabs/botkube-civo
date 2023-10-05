@@ -45,6 +45,7 @@ flux create hr botkube-civo-demo --source=HelmRepository/botkube --chart=botkube
 5. Create the namespace up front
 ```c
 kubectl create ns botkube-civo-demo --dry-run=client -o yaml > namespace-botkube-civo-demo.yaml
+```
 
 6. Create a kustomize to apply the resources
 ```c
@@ -80,6 +81,16 @@ patchesStrategicMerge:
 - patch-clustername.yaml
 ```
 
+10. Create a cluster in civo cloud to deploy to in this example its called **test04**
+```c
+date && time civo k8s create test04 --region NYC1 --save --merge --nodes 1 --size g4s.kube.small --cluster-type k3s --switch --wait -a Traefik-v2-loadbalancer -a civo-cluster-autoscaler --version 1.27.1-k3s1
+```
+
+11. Flux bootstrap the cluster to your repo of choice with the helm-controller
+```c
+flux bootstrap github   --owner=$GITHUB_USER   --repository=someCoolRepository   --branch=main   --path=datacenters/civo/clusters/test04   --personal --verbose --components=kustomize-controller,source-controller,notification-controller,helm-controller --interval=1m
+```
+
 ---
 # References
 - [Artifacthub.io Botkube](https://artifacthub.io/packages/helm/infracloudio/botkube)
@@ -90,3 +101,4 @@ patchesStrategicMerge:
 ## Contacts
 - Find me Shawn Garrett on civo community slack and cncf slack
 - [Contact Shawn at Nebari Labs](mailto:shawn@nebarilabs.com)
+- [Civo Ambassadors](https://www.civo.com/ambassadors)
