@@ -18,7 +18,7 @@ curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack
 # Installation
 
 ## Summary
-What we will essentially do is use local helm cli to get the values needed for the chart. Flux will also be setup to say where is the chart to pull from when in cluster and how to define the helmRelease to be reconciled via helm-controller in cluster. Kustomize is used to help validate any changes you would like to make before applying. We will then make a patch by copying the base helmRelease to a patch file that will replace items of interest like a cluster-name or even api tokens
+What we will essentially do is use local helm cli to get the values needed for the chart. Flux will also be setup to say where is the chart to pull from when in cluster and how to define the helmRelease to be reconciled via helm-controller in cluster. Kustomize is used to help validate any changes you would like to make before applying. We will then make a patch by copying the base helmRelease to a patch file that will replace items of interest like a cluster-name or even api tokens. We will then quickly create a cluster in our favorite k8s cloud provider civo and hand our manifest to the helm-controller and watch the GitOps ensure adn reconcile our desired state of a helmRelease.
 
 ---
 ## Creating all the things
@@ -89,6 +89,11 @@ date && time civo k8s create test04 --region NYC1 --save --merge --nodes 1 --siz
 11. Flux bootstrap the cluster to your repo of choice with the helm-controller
 ```c
 flux bootstrap github   --owner=$GITHUB_USER   --repository=someCoolRepository   --branch=main   --path=datacenters/civo/clusters/test04   --personal --verbose --components=kustomize-controller,source-controller,notification-controller,helm-controller --interval=1m
+```
+
+12. With our new cluster available with flux we pass our manifests we've made to the cluster's helm-controller
+```c
+kubectl apply -k .
 ```
 
 ---
