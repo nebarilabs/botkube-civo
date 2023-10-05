@@ -79,6 +79,7 @@ patchesStrategicMerge:
 ---
 # References
 - [Artifacthub.io Botkube](https://artifacthub.io/packages/helm/infracloudio/botkube)
+- [Botkube Discord Instructions](https://docs.botkube.io/installation/discord/self-hosted)
 - [Civo Community Slack](https://civo-community.slack.com/archives/CMVCKMCN5)
 - [CNCF Slack](https://communityinviter.com/apps/cloud-native/cncf)
 
