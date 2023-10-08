@@ -1,0 +1,36 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: botkube-civo-demo
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: botkube
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: botkube
+  interval: 1m0s
+  targetNamespace: botkube
+  values:
+    executors:
+      flux:
+        botkube/flux:
+          config:
+            github:
+              auth:
+                accessToken: ""
+            log:
+              level: info
+          context:
+            rbac:
+              group:
+                prefix: ""
+                static:
+                  #values: ["flux"]  #use this if you want to use flux with elevetaed rbac in the kustomize resources
+                  values:
+                  - botkube-plugins-default
+                type: Static
+          enabled: true

@@ -12,3 +12,6 @@ commonLabels:
 patchesStrategicMerge:
 - patch-clustername.yaml
 - patch-discord.yaml
+- patch-flux.yaml
+- patch-helm.yaml
+- patch-kubectl.yaml

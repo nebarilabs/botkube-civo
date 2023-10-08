@@ -1,0 +1,12 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: botkube-civo-demo
+  namespace: flux-system
+spec:
+  values:
+    executors:
+      k8s-default-tools:
+        botkube/helm:
+          enabled: true
