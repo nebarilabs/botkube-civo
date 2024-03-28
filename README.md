@@ -3,7 +3,8 @@ Demonstrate Botkube ChatOps via GitOps.
 
 ## Botkube Office Hours Presentation
 This is the video that implements and demonstrates this repo creating a new cluster and deploying with GitOps practices to deploy Botkube to achieve ChatOps.
-[![Botkube Office Hours Presentation](https://www.youtube.com/live/WxkDWLqVghw?si=d8cQudgtyUF-KdPT)]
+
+[![Botkube Office Hours Presentation](https://img.youtube.com/vi/WxkDWLqVghw/0.jpg)](https://www.youtube.com/live/WxkDWLqVghw?si=d8cQudgtyUF-KdPT)
 
 ## Prerequisites
 You will need the following 5 binaries, even via curl if you're feeling brave and trusting, its assumed you have kubectl & civo cli's already.
