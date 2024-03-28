@@ -1,5 +1,9 @@
 # Botkube-Civo-Demo
-Demonstrate Botkube ChatOps via GitOps
+Demonstrate Botkube ChatOps via GitOps.
+
+## Botkube Office Hours Presentation
+This is the video that implements and demonstrates this repo creating a new cluster and deploying with GitOps practices to deploy Botkube to achieve ChatOps.
+[![Botkube Office Hours Presentation](https://www.youtube.com/live/WxkDWLqVghw?si=d8cQudgtyUF-KdPT)]
 
 ## Prerequisites
 You will need the following 5 binaries, even via curl if you're feeling brave and trusting, its assumed you have kubectl & civo cli's already.
@@ -116,6 +120,7 @@ kubectl apply -k .
 - [Botkube Discord Instructions](https://docs.botkube.io/installation/discord/self-hosted)
 - [Civo Community Slack](https://civo-community.slack.com/archives/CMVCKMCN5)
 - [CNCF Slack](https://communityinviter.com/apps/cloud-native/cncf)
+- [Botkube Office Hours](https://www.youtube.com/live/WxkDWLqVghw?si=d8cQudgtyUF-KdPT)
 
 ## Contacts
 - Find me Shawn Garrett on the Civo community slack and cncf slack
